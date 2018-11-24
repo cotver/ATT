@@ -14,9 +14,6 @@ def main():
     """Start program"""
     start_time = time.time()
     
-    tourist2016 = pd.ExcelFile("Tourist/2559.xlsx")
-    tourist2017 = pd.ExcelFile("Tourist/2560.xlsx")
-    tourist2018 = pd.ExcelFile("Tourist/2561.xlsx")
 
     # list of month
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
