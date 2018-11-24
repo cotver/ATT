@@ -24,13 +24,17 @@ def main():
     continent = ["East Asia", "Europe", "The Americas", "South Asia", "Oceania", "Middle East", "Africa"]
 
     
-    for month in months:
-        dic = {}
-        dic2 = {}
-        x = tourist2016.parse(month)
-        for j in range(61):
-            dic[x["Country"][j]] = x["Number"][j]
-        print(dic)
+    year_dic = {}
+    for year in ["2016", "2017"]:
+        month_dic = {}
+        for month in months:
+            dic = {}
+            x = pd.ExcelFile("Tourist/%s.xlsx" %year).parse(month) # read excel file
+            for j in range(61):
+                dic[x["Country"][j]] = x["Number"][j]
+            month_dic[month] = dic
+        year_dic[year] = month_dic
+    print(year_dic)
 
         
     print('** Program End At\t:', time.time()-start_time, "sec")
