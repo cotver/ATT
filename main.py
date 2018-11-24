@@ -22,9 +22,9 @@ def main():
 
     
     year_dic = {}
-    for year in ["2016", "2017"]:
+    for year in ["2016", "2017", "2018"]:
         month_dic = {}
-        for month in months:
+        for month in months if year != "2018" else months[0:10]:
             dic = {}
             x = pd.ExcelFile("Tourist/%s.xlsx" %year).parse(month) # read excel file
             for j in range(61):
