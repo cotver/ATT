@@ -27,14 +27,19 @@ def main():
         for month in months if year != "2018" else months[0:10]: # 2018 Nov Dec Data not yet available, We'll update later
             dic = {}
             x = pd.ExcelFile("Tourist/%s.xlsx" %year).parse(month) # read excel file
+            save = ""
             for j in range(61):
-                dic[x["Country"][j]] = x["Number"][j]
+                if x["Country"][j] in continent:
+                    dic[x["Country"][j]] = {}
+                    save = x["Country"][j]
+                else:
+                    dic[save].update({x["Country"][j] : x["Number"][j]})
             month_dic[month] = dic
         year_dic[year] = month_dic
     print(year_dic)
 
         
-    print('** Program End At\t:', time.time()-start_time, "sec")
+    print('** Program End At\t:', "%.2f" %(time.time()-start_time), "sec")
   
 print('** Python version\t:', platform.python_version())
 print('** Staring Program....')
