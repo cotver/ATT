@@ -9,38 +9,55 @@ import pandas as pd
 import platform
 import time
 
+# Our modules
+from modules import top10
+
+
+years = ["2016", "2017", "2018"]
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] # list of month
+
+continents = ["East Asia", "Europe", "The Americas", "South Asia", "Oceania", "Middle East", "Africa"] # list of continent
+
+
+
+def top10_picker(year_dic):
+    """ top10"""
+    for year in years:
+        top10.year(year_dic["%s" %year], months if year != "2018" else months[0:10], continents)
+        
+    return "success"
+
+
 
 def main():
     """Start program"""
     start_time = time.time()
     
-
-    # list of month
-    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    # list of continent
-    continent = ["East Asia", "Europe", "The Americas", "South Asia", "Oceania", "Middle East", "Africa"]
-
     
     year_dic = {}
-    for year in ["2016", "2017", "2018"]:
+    for year in years:
         month_dic = {}
-        for month in months if year != "2018" else months[0:10]: # 2018 Nov Dec Data not yet available, We'll update later
+        for month in months if year != "2018" else months[0:10]: # 2018 Nov Dec Data not yet available, We'll update when it's available
             dic = {}
             x = pd.ExcelFile("Tourist/%s.xlsx" %year).parse(month) # read excel file
             save = ""
-            for j in range(61):
-                if x["Country"][j] in continent:
+            for j in range(60):
+                if x["Country"][j] in continents:
                     dic[x["Country"][j]] = {}
                     save = x["Country"][j]
                 else:
                     dic[save].update({x["Country"][j] : x["Number"][j]})
             month_dic[month] = dic
         year_dic[year] = month_dic
-    print(year_dic)
 
-        
-    print('** Program End At\t:', "%.2f" %(time.time()-start_time), "sec")
+
+    print('** Top 10 countries analyzing\t:', top10_picker(year_dic))
+    
+    
+    print('** Program end at\t:', "%.2f" %(time.time()-start_time), "sec")
   
 print('** Python version\t:', platform.python_version())
 print('** Staring Program....')
 main()
+
