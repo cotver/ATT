@@ -24,8 +24,10 @@ continents = ["East Asia", "Europe", "The Americas", "South Asia", "Oceania", "M
 def top10_picker(year_dic):
     """ top10"""
     for year in years:
-        top10.year(year_dic["%s" %year], months if year != "2018" else months[0:10], continents)
-        
+        top10.year_country(year_dic["%s" %year], months if year != "2018" else months[0:10], continents)
+        top10.year_continent(year_dic["%s" %year], months if year != "2018" else months[0:10], continents)
+    top10.total_country(year_dic, years, months, continents)  
+    top10.total_continent(year_dic, years, months, continents)    
     return "success"
 
 
