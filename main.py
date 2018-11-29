@@ -10,7 +10,7 @@ import platform
 import time
 
 # Our modules
-from modules import top10, graph
+from modules import top10, graph, season
 
 
 years = ["2016", "2017", "2018"]
@@ -27,11 +27,15 @@ def top10_picker(year_dic):
     topcontinent = []
     
     for year in years:
-        topcountry.append(top10.year_country(year_dic["%s" %year], months if year != "2018" else months[0:10], continents))
-        topcontinent.append(top10.year_continent(year_dic["%s" %year], months if year != "2018" else months[0:10], continents))
+        topcountry.append(top10.year_country(year_dic["%s" %year], months, continents))
+        topcontinent.append(top10.year_continent(year_dic["%s" %year], months, continents))
     topcountry.append(top10.total_country(year_dic, years, months, continents))
     topcontinent.append(top10.total_continent(year_dic, years, months, continents))
-    graph.graph_topten(topcountry)
+
+    alltop = {"country":topcountry, "continent":topcontinent}
+    
+    graph.graph_topten(alltop)
+    
     return "success"
 
 
@@ -58,11 +62,15 @@ def main():
         year_dic[year] = month_dic
 
 
-    print('** Top 10 countries analyzing\t:', top10_picker(year_dic))
+
+    print('** Top 10 countries analyzing\t\t  :', top10_picker(year_dic))
     
-    
-    print('** Program end at\t\t:', "%.2f" %(time.time()-start_time), "sec")
+    print('** People Arrive in each season analyzing :', end=" ")#not finish yet
+    x = season.season(year_dic, years, months) #not finish yet
+    graph.graph_season(x, years)#not finish yet
+    print("success")#not finish yet
+    print('** Program end at\t\t\t  :', "%.2f" %(time.time()-start_time), "sec")
   
-print('** Python version\t\t:', platform.python_version())
+print('** Python version\t\t\t  :', platform.python_version())
 print('** Staring Program....')
 main()
