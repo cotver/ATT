@@ -10,7 +10,7 @@ import platform
 import time
 
 # Our modules
-from modules import top10
+from modules import top10, graph
 
 
 years = ["2016", "2017", "2018"]
@@ -23,11 +23,15 @@ continents = ["East Asia", "Europe", "The Americas", "South Asia", "Oceania", "M
 
 def top10_picker(year_dic):
     """ top10"""
+    topcountry = []
+    topcontinent = []
+    
     for year in years:
-        top10.year_country(year_dic["%s" %year], months if year != "2018" else months[0:10], continents)
-        top10.year_continent(year_dic["%s" %year], months if year != "2018" else months[0:10], continents)
-    top10.total_country(year_dic, years, months, continents)  
-    top10.total_continent(year_dic, years, months, continents)    
+        topcountry.append(top10.year_country(year_dic["%s" %year], months if year != "2018" else months[0:10], continents))
+        topcontinent.append(top10.year_continent(year_dic["%s" %year], months if year != "2018" else months[0:10], continents))
+    topcountry.append(top10.total_country(year_dic, years, months, continents))
+    topcontinent.append(top10.total_continent(year_dic, years, months, continents))
+    graph.graph_topten(topcountry)
     return "success"
 
 
@@ -57,9 +61,8 @@ def main():
     print('** Top 10 countries analyzing\t:', top10_picker(year_dic))
     
     
-    print('** Program end at\t:', "%.2f" %(time.time()-start_time), "sec")
+    print('** Program end at\t\t:', "%.2f" %(time.time()-start_time), "sec")
   
-print('** Python version\t:', platform.python_version())
+print('** Python version\t\t:', platform.python_version())
 print('** Staring Program....')
 main()
-
