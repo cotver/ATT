@@ -32,7 +32,7 @@ def graph_season(data, years):
 def graph_change(data, years, months):
     """createing People arrive change in year graph"""
     
-    line_chart = pygal.Bar()
+    line_chart = pygal.Line()
     line_chart.title = 'People arrive change'
     line_chart.x_labels = map(str, months)
     for year in years:
