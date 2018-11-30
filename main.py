@@ -10,7 +10,7 @@ import platform
 import time
 
 # Our modules
-from modules import top10, graph, season
+from modules import top10, graph, season, change
 
 
 years = ["2016", "2017", "2018"]
@@ -70,7 +70,9 @@ def main():
     graph.graph_season(x, years)#not finish yet
     print("success")#not finish yet
     print('** Program end at\t\t\t  :', "%.2f" %(time.time()-start_time), "sec")
-  
+    y = change.year_change(year_dic, years, months, continents)#not finish yet
+    print(y)#not finish yet
+    graph.graph_change(y, years, months)#not finish yet
 print('** Python version\t\t\t  :', platform.python_version())
 print('** Staring Program....')
 main()
