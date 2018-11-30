@@ -26,6 +26,6 @@ def season(data, years, months):
             elif month in winter:
                 count_winter += count
                 
-        dic[year] = [count_summer, count_rainy, count_winter]
+        dic[year] = [count_summer/3, count_rainy/5, count_winter/4]
 
     return dic
