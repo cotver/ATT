@@ -3,6 +3,17 @@
 import pygal
 
 
+def create_graph(years, months, alltop, season, change):
+    """cerate graph"""
+    
+    graph_topten(alltop)
+    graph_season(season, years)
+    graph_change(change, years, months)
+    
+    return "success"
+    
+
+
 def graph_topten(alltop):
     """createing topten graph"""
     
