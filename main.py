@@ -10,7 +10,7 @@ import platform
 import time
 
 # Our modules
-from modules import top10, graph, season, change
+from modules import top10, season, change, graph
 
 
 years = ["2016", "2017", "2018"]
@@ -21,8 +21,31 @@ continents = ["East Asia", "Europe", "The Americas", "South Asia", "Oceania", "M
 
 
 
+def change_picker(year_dic, years, months, continents):
+    """Pick People Arrive changes each year"""
+
+    print('** People Arrive changes each year analyzing :', end=" ")
+    changes = change.year_change(year_dic, years, months, continents)
+    print("success")
+    return changes
+
+
+
+def season_picker(year_dic, years, months):
+    """Pick People Arrive in each season"""
+    
+    print('** People Arrive in each season analyzing    :', end=" ")
+    seasons = season.season(year_dic, years, months)
+    print("success")
+    return seasons
+
+
+
 def top10_picker(year_dic):
-    """ top10"""
+    """Pick top10 continent and country"""
+
+    print('** Top 10 countries analyzing\t\t     :', end=" ")
+    
     topcountry = []
     topcontinent = []
     
@@ -33,10 +56,10 @@ def top10_picker(year_dic):
     topcontinent.append(top10.total_continent(year_dic, years, months, continents))
 
     alltop = {"country":topcountry, "continent":topcontinent}
-    
-    graph.graph_topten(alltop)
-    
-    return "success"
+
+
+    print("success")
+    return alltop
 
 
 
@@ -62,17 +85,15 @@ def main():
         year_dic[year] = month_dic
 
 
-
-    print('** Top 10 countries analyzing\t\t  :', top10_picker(year_dic))
+    all_top_10 = top10_picker(year_dic)
     
-    print('** People Arrive in each season analyzing :', end=" ")#not finish yet
-    x = season.season(year_dic, years, months) #not finish yet
-    graph.graph_season(x, years)#not finish yet
-    print("success")#not finish yet
-    print('** Program end at\t\t\t  :', "%.2f" %(time.time()-start_time), "sec")
-    y = change.year_change(year_dic, years, months, continents)#not finish yet
-    print(y)#not finish yet
-    graph.graph_change(y, years, months)#not finish yet
-print('** Python version\t\t\t  :', platform.python_version())
+    people_arrive_season = season_picker(year_dic, years, months)
+
+    people_change = change_picker(year_dic, years, months, continents)
+
+    print('** Creating graph\t\t\t     :', graph.create_graph(years, months, all_top_10, people_arrive_season, people_change))
+    print('** Program ended\t\t\t     :', "%.2f" %(time.time()-start_time), "sec")
+
+print('** Python version\t\t\t     :', platform.python_version())
 print('** Staring Program....')
 main()
