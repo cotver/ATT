@@ -1,4 +1,4 @@
-"""Top 10"""
+"""Find the top 10 countries Arrive to Thailand"""
 
 def year_country(data, months, continents):
     """find top 10 country in that year"""
@@ -11,8 +11,7 @@ def year_country(data, months, continents):
                     if country in dic else data[month][continent][country]
     topten = sorted(dic, key=lambda x: dic[x], reverse =True)
     return sortdata(topten, dic)
-    
-
+ 
 def year_continent(data, months, continents):
     """find top 10 continent in that year"""
     dic = {}
@@ -57,5 +56,5 @@ def sortdata(topten, dic):
     lis = []
     for sor_t in topten[:10]:
         lis.append((sor_t, dic[sor_t]))
-        
+
     return lis
