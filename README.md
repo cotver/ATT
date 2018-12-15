@@ -1,4 +1,4 @@
-#  International Tourist Arrivals to Thailand
+# Arrivals to Thailand
 ## รายละเอียดโปรเจค
 
 ## ข้อมูลจาก
