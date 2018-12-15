@@ -1,5 +1,5 @@
 """
-People come in each season
+People arrive each season
 """
 
 def season(data, years, months):
