@@ -1,4 +1,4 @@
-"""graph create"""
+"""graph creater"""
 
 import pygal
 
