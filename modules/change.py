@@ -1,6 +1,9 @@
-""" """
+"""
+People arrive change
+"""
+
 def year_change(data, years, months, continents):
-    """ """
+    """People arrive change each year"""
     dic = {}
     for year in years:
         lis = []
