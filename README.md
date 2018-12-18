@@ -12,7 +12,7 @@
   - Pygal 2.0.0
   - xlrd 1.1.0
 ## ผลลัพธ์
-&nbsp;ผลการวิเคราะห์: http://www.it.kmitl.ac.th/~it61070030/Web/home.html
+&nbsp;&nbsp;&nbsp;&nbsp;ผลการวิเคราะห์: http://www.it.kmitl.ac.th/~it61070030/Web/home.html
 ## สมาชิก
   - นางสาวชญานี คำเจริญ 61070030
   - นายธนโชติ จิรกิตติ์สกุล 61070069
