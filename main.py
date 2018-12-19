@@ -67,7 +67,6 @@ def main():
     """Start program"""
     start_time = time.time()
     
-    
     year_dic = {}
     for year in years:
         month_dic = {}
